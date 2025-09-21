@@ -20,6 +20,18 @@ return (
 
         {/* Input field */}
         <input type="text" value={input} onChange={(e) => setInput(e.target.value)} placeholder='Add Task'/>
+
+          {/* Add button */}
+          <button onClick={addTodo}>Add</button>
+
+           {/* Todo list */}
+           <ul>
+          {todos.map((todo, index) => 
+          <li key={index}>{todo}</li>
+          )}
+
+
+           </ul>
   </div>
 )
 
