@@ -12,7 +12,13 @@ const addTodo = () => {
   if (input.trim() === "") return; // ignore empty input
   setTodos([...todos, input]); // add new todo
   setInput(""); // clear input
-}
+};
+
+// Delete a todo
+const deleteTodo = (index) => {
+  const newTodos = todos.filter((_, i) => i !== index);
+  setTodos(newTodos);
+};
 
 return (
   <div style={{padding: "20px"}}>
@@ -26,10 +32,13 @@ return (
 
            {/* Todo list */}
            <ul>
-          {todos.map((todo, index) => 
-          <li key={index}>{todo}</li>
-          )}
+          {todos.map((todo, index) => (
+            <li key={index}>
+              {todo}{" "}
+              <button onClick={() => deleteTodo(index)}>❌ Delete</button>
+            </li>
 
+          ))}
 
            </ul>
   </div>
