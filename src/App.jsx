@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
+import EditTodo from './components/EditTodo';
 
 function App() {
 // Step 1: Create state for Todos
@@ -26,7 +27,7 @@ return (
 <h1>Todo App</h1>
 
 <TodoInput input={input} setInput={setInput} addTodo={addTodo} />
-      <TodoList todos={todos} deleteTodo={deleteTodo} />
+      <TodoList todos={todos} deleteTodo={deleteTodo} editTodo={editTodo} />
 
      
   </div>
