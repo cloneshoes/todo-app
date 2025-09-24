@@ -1,5 +1,6 @@
-import { useState } from 'react'
-
+import React, { useState } from 'react';
+import TodoInput from './components/TodoInput';
+import TodoList from './components/TodoList';
 
 function App() {
 // Step 1: Create state for Todos
@@ -24,27 +25,11 @@ return (
   <div style={{padding: "20px"}}>
 <h1>Todo App</h1>
 
-        {/* Input field */}
-        <input type="text" value={input} onChange={(e) => setInput(e.target.value)} placeholder='Add Task'/>
+<TodoInput input={input} setInput={setInput} addTodo={addTodo} />
+      <TodoList todos={todos} deleteTodo={deleteTodo} />
 
-          {/* Add button */}
-          <button onClick={addTodo}>Add</button>
-
-           {/* Todo list */}
-           <ul>
-          {todos.map((todo, index) => (
-            <li key={index}>
-              {todo}{" "}
-              <button onClick={() => deleteTodo(index)}>❌ Delete</button>
-            </li>
-
-          ))}
-
-           </ul>
+     
   </div>
-)
-
-
-}
+)};
 
 export default App
