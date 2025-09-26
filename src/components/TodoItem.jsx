@@ -1,26 +1,25 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import EditTodo from "./EditTodo";
 
-function TodoItem({ todo, index, deleteTodo, editTodo }) {
-   const [isEditing, setIsEditing] = useState(false);
+function TodoItem({ todo, deleteTodo, editTodo }) {
+  const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <li>
+    <li style={{ marginBottom: 8 }}>
       {isEditing ? (
         <EditTodo
-          currentValue={todo}
-          onSave={(newValue) => {
-            editTodo(index, newValue);
+          todo={todo}
+          onSave={(id, newText) => {
+            editTodo(id, newText);
             setIsEditing(false);
           }}
           onCancel={() => setIsEditing(false)}
         />
       ) : (
         <>
-          {todo}
-          <button onClick={() => deleteTodo(index)}>Delete</button>
-          <button onClick={() => setIsEditing(true)}>Edit</button>
+          <span>{todo.text}</span>{" "}
+          <button onClick={() => setIsEditing(true)}>Edit</button>{" "}
+          <button onClick={() => deleteTodo(todo.id)}>Delete</button>
         </>
       )}
     </li>

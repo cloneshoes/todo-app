@@ -1,36 +1,46 @@
-import React, { useState } from 'react';
-import TodoInput from './components/TodoInput';
-import TodoList from './components/TodoList';
-import EditTodo from './components/EditTodo';
+import React, { useEffect, useState } from "react";
+import TodoInput from "./components/TodoInput";
+import TodoList from "./components/TodoList";
 
 function App() {
-// Step 1: Create state for Todos
-const [todos, setTodos] = useState([]);
-const [input, setInput] = useState("");
+  // todos will be objects: { id, text }
+  const [todos, setTodos] = useState([]);
+  const [input, setInput] = useState("");
 
+  // If there were any string todos (from previous version),
+  // convert them into objects once on mount.
+  useEffect(() => {
+    if (todos.length > 0 && typeof todos[0] === "string") {
+      setTodos((prev) =>
+        prev.map((t, i) => ({ id: Date.now() + i, text: String(t) }))
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // run once
 
-// step 2: Function to add todo
-const addTodo = () => {
-  if (input.trim() === "") return; // ignore empty input
-  setTodos([...todos, input]); // add new todo
-  setInput(""); // clear input
-};
+  const addTodo = () => {
+    if (input.trim() === "") return;
+    setTodos((prev) => [...prev, { id: Date.now(), text: input }]);
+    setInput("");
+  };
 
-// Delete a todo
-const deleteTodo = (index) => {
-  const newTodos = todos.filter((_, i) => i !== index);
-  setTodos(newTodos);
-};
+  const deleteTodo = (id) => {
+    setTodos((prev) => prev.filter((t) => t.id !== id));
+  };
 
-return (
-  <div style={{padding: "20px"}}>
-<h1>Todo App</h1>
+  const editTodo = (id, newText) => {
+    setTodos((prev) =>
+      prev.map((t) => (t.id === id ? { ...t, text: newText } : t))
+    );
+  };
 
-<TodoInput input={input} setInput={setInput} addTodo={addTodo} />
+  return (
+    <div style={{ padding: "20px" }}>
+      <h1>Todo App</h1>
+      <TodoInput input={input} setInput={setInput} addTodo={addTodo} />
       <TodoList todos={todos} deleteTodo={deleteTodo} editTodo={editTodo} />
+    </div>
+  );
+}
 
-     
-  </div>
-)};
-
-export default App
+export default App;

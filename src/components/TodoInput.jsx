@@ -2,15 +2,20 @@ import React from "react";
 
 function TodoInput({ input, setInput, addTodo }) {
   return (
-    <div>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        addTodo();
+      }}
+    >
       <input
         type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        placeholder="Add Task"
+        placeholder="Enter a task..."
       />
-      <button onClick={addTodo}>Add</button>
-    </div>
+      <button type="submit">Add</button>
+    </form>
   );
 }
 

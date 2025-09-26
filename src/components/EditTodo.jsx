@@ -1,7 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 function EditTodo({ todo, onSave, onCancel }) {
-  const [newText, setNewText] = useState(todo.text);
+  // todo is an object { id, text }
+  const [newText, setNewText] = useState(todo?.text ?? "");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -10,14 +11,16 @@ function EditTodo({ todo, onSave, onCancel }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="edit-form">
+    <form onSubmit={handleSubmit} style={{ display: "inline" }}>
       <input
         type="text"
         value={newText}
         onChange={(e) => setNewText(e.target.value)}
       />
       <button type="submit">Save</button>
-      <button type="button" onClick={onCancel}>Cancel</button>
+      <button type="button" onClick={onCancel}>
+        Cancel
+      </button>
     </form>
   );
 }
