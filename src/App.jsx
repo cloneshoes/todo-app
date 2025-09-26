@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
+import './App.css';
 
 function App() {
   // todos will be objects: { id, text }
@@ -35,7 +36,7 @@ function App() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="todo-container">
       <h1>Todo App</h1>
       <TodoInput input={input} setInput={setInput} addTodo={addTodo} />
       <TodoList todos={todos} deleteTodo={deleteTodo} editTodo={editTodo} />

@@ -2,7 +2,7 @@ import React from "react";
 
 function TodoInput({ input, setInput, addTodo }) {
   return (
-    <form
+    <div className="todo-input"
       onSubmit={(e) => {
         e.preventDefault();
         addTodo();
@@ -14,8 +14,8 @@ function TodoInput({ input, setInput, addTodo }) {
         onChange={(e) => setInput(e.target.value)}
         placeholder="Enter a task..."
       />
-      <button type="submit">Add</button>
-    </form>
+      <button type="submit" onClick={addTodo}>Add</button>
+    </div>
   );
 }
 

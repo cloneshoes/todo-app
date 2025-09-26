@@ -1,5 +1,6 @@
 import React from "react";
 import TodoItem from "./TodoItem";
+import '../App.css';
 
 function TodoList({ todos, deleteTodo, editTodo }) {
   if (!todos || todos.length === 0) {
@@ -7,7 +8,7 @@ function TodoList({ todos, deleteTodo, editTodo }) {
   }
 
   return (
-    <ul style={{ listStyle: "none", padding: 0 }}>
+    <ul className="todo-list">
       {todos.map((todo) => (
         <TodoItem
           key={todo.id}

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import EditTodo from "./EditTodo";
+import '../App.css';
 
 function TodoItem({ todo, deleteTodo, editTodo }) {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <li style={{ marginBottom: 8 }}>
+    <li className="todo-item">
       {isEditing ? (
         <EditTodo
           todo={todo}
@@ -18,8 +19,8 @@ function TodoItem({ todo, deleteTodo, editTodo }) {
       ) : (
         <>
           <span>{todo.text}</span>{" "}
-          <button onClick={() => setIsEditing(true)}>Edit</button>{" "}
-          <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+          <button className="edit" onClick={() => setIsEditing(true)}>Edit</button>{" "}
+          <button className="delete" onClick={() => deleteTodo(todo.id)}>Delete</button>
         </>
       )}
     </li>

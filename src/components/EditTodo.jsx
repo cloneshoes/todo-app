@@ -11,14 +11,15 @@ function EditTodo({ todo, onSave, onCancel }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: "inline" }}>
+    <form onSubmit={handleSubmit} className="edit-form">
       <input
         type="text"
+        className="edit-input"
         value={newText}
         onChange={(e) => setNewText(e.target.value)}
       />
-      <button type="submit">Save</button>
-      <button type="button" onClick={onCancel}>
+      <button type="submit"  className="save-btn">Save</button>
+      <button type="button" className="cancel-btn" onClick={onCancel}> 
         Cancel
       </button>
     </form>
